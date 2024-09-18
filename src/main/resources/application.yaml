@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: sadir-messaging-sidecar-draft
+
+  cloud:
+    stream:
+      bindings:
+        notification-in-0:
+          destination: notifications-source
+          group: sadir-esb
+          binder: kafka
+          consumer:
+            auto-startup: true
+        notification-out-0:
+          destination: notifications-sink
+          group: sadir-esb
+          binder: kafka
+          producer:
+            auto-startup: true
+      kafka:
+        binder:
+          applicationId: sadir-esb
+          brokers: kafka:9092
+          auto-add-partitions: true
+          auto-create-topics: true
+      default-binder: kafka
+
+
